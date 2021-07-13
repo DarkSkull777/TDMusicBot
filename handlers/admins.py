@@ -13,18 +13,6 @@ from helpers.filters import command, other_filters
 from helpers.decorators import errors, authorized_users_only
 from config import que, admins as a
 
-@Client.on_message(command("reload") & other_filters)
-@errors
-@authorized_users_only
-async def update_admin(client, message):
-    global a
-    admins = await client.get_chat_members(message.chat.id, filter="administrators")
-    new_ads = []
-    for u in admins:
-        new_ads.append(u.user.id)
-    a[message.chat.id] = new_ads
-    await message.reply_text("✅ Bot **berhasil dimulai ulang!**\n\n• **Daftar admin** telah **diperbarui.**")
-
 
 @Client.on_message(command("pause") & other_filters)
 @errors
