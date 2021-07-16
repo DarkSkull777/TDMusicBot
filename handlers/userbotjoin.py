@@ -26,7 +26,7 @@ async def addchannel(client, message):
         await USER.send_message(message.chat.id, "`Hm saya di panggil untuk menjalankan tugas`")
     except UserAlreadyParticipant:
         await message.reply_text(
-            f"<b>{user.first_name} Berhasil bergabung di obrolan anda.</b>",
+            f"<b>{user.first_name} Berhasil bergabung di obrolan kamu.</b>",
         )
     except Exception as e:
         print(e)
