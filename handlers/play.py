@@ -33,7 +33,7 @@ from cache.admins import admins as a
 from PIL import Image, ImageFont, ImageDraw
 chat_id = None
 
-ARQ_API_KEY = "YPHODY-ZLSHSE-UBBIQA-YFLDKM-ARQ"
+ARQ_API_KEY = "XNQLLF-SBFKUH-HTNXTO-LEXDPE-ARQ"
 aiohttpsession = aiohttp.ClientSession()
 arq = ARQ("https://thearq.tech", ARQ_API_KEY, aiohttpsession)
 
@@ -364,14 +364,14 @@ async def m_cb(b, cb):
                 pass
 
             callsmusic.pytgcalls.leave_group_call(chat_id)
-            await cb.message.edit("❌ **Memberhentikan Lagu!**")
+            await cb.message.edit("Memberhentikan Lagu")
         else:
             await cb.answer("Assistant Sedang Tidak Terhubung dengan VCG!", show_alert=True)
 
 @Client.on_message(command("play") & other_filters)
 async def play(_, message: Message):
     global que
-    lel = await message.reply("🔎 **Sedang Mencari Lagu**")
+    lel = await message.reply("🔎 Sedang mencari lagu tunggu nii-san!")
     administrators = await get_administrators(message.chat)
     chid = message.chat.id
     try:
@@ -404,7 +404,7 @@ async def play(_, message: Message):
                               pass
                           except Exception as e:
                               await lel.edit(
-                                  f"<b>🔴 Flood Wait Error 🔴 \n{user.first_name} tidak dapat bergabung dengan group Anda karena banyaknya permintaan bergabung untuk userbot! Pastikan pengguna tidak dibanned dalam group."
+                                  f"<b>ERROR! \n{user.first_name} tidak dapat bergabung dengan group Anda karena banyaknya permintaan bergabung untuk userbot! Pastikan pengguna tidak dibanned dalam group."
                         f"\n\nAtau tambahkan @{user.username} Bot secara manual ke Group Anda dan coba lagi.</b>",
                               )
                               pass
@@ -427,7 +427,7 @@ async def play(_, message: Message):
     for i in message.command[1:]:
         query += " " + str(i)
     print(query)
-    await lel.edit("🔄 **Sedang Memproses Lagu**")
+    await lel.edit("haiikkk! sedang memproses lagu!")
     ydl_opts = {"format": "bestaudio[ext=m4a]"}
     try:
         results = YoutubeSearch(query, max_results=1).to_dict()
@@ -451,7 +451,7 @@ async def play(_, message: Message):
             dur += (int(dur_arr[i]) * secmul)
             secmul *= 60
         if (dur / 60) > DURATION_LIMIT:
-             await lel.edit(f"❌ **Lagu dengan durasi lebih dari `{DURATION_LIMIT}` menit tidak dapat diputar!**")
+             await lel.edit(f"Lagu dengan durasi lebih dari `{DURATION_LIMIT}` menit tidak dapat diputar")
              return
     except:
         pass
