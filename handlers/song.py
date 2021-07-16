@@ -27,7 +27,7 @@ def song(client, message):
     rpk = "[" + user_name + "](tg://user?id=" + str(user_id) + ")"
     query = "".join(" " + str(i) for i in message.command[1:])
     print(query)
-    m = message.reply("🔎 **Sedang Mencari Lagu**")
+    m = message.reply("Sedang mencari lagu...Tunggu nii-san!")
     ydl_opts = {"format": "bestaudio[ext=m4a]"}
     try:
         results = YoutubeSearch(query, max_results=1).to_dict()
@@ -42,16 +42,16 @@ def song(client, message):
         results[0]["url_suffix"]
         results[0]["views"]
     except Exception as e:
-        m.edit("❌ **Lagu Tidak ditemukan.**\n\n**Coba Masukan Judul lagu yang lebih jelas.**")
+        m.edit("Lagu Tidak ditemukan.**\n\n**Coba Masukan Judul lagu yang lebih jelas.**")
         print(str(e))
         return
-    m.edit("📥 **Sedang Mendownload Lagu**")
+    m.edit("Haiikk! Sedang Mendownload Lagu**")
     try:
         with youtube_dl.YoutubeDL(ydl_opts) as ydl:
             info_dict = ydl.extract_info(link, download=False)
             audio_file = ydl.prepare_filename(info_dict)
             ydl.process_info(info_dict)
-        rep = f"**🎵 Uploaded by @{BOT_USERNAME}**"
+        rep = f"**Di unggah oleh @{BOT_USERNAME}**"
         secmul, dur, dur_arr = 1, 0, duration.split(":")
         for i in range(len(dur_arr) - 1, -1, -1):
             dur += int(dur_arr[i]) * secmul
@@ -66,7 +66,7 @@ def song(client, message):
         )
         m.delete()
     except Exception as e:
-        m.edit("❌ **Error**")
+        m.edit("Error")
         print(e)
     try:
         os.remove(audio_file)
@@ -234,13 +234,13 @@ async def jssong(_, message):
         return
     if is_downloading:
         await message.reply_text(
-            "**Downloadan yang lain sedang berlangsung, coba lagi nanti**"
+            "**Download an yang lain sedang berlangsung, coba lagi nanti**"
         )
         return
     is_downloading = True
     text = message.text.split(None, 1)[1]
     query = text.replace(" ", "%20")
-    m = await message.reply_text("🔎 **Sedang Mencari Lagu**")
+    m = await message.reply_text("Sedang mencari lagu...Tunggu nii-san!")
     try:
         songs = await arq.saavn(query)
         if not songs.ok:
@@ -249,9 +249,9 @@ async def jssong(_, message):
         sname = songs.result[0].song
         slink = songs.result[0].media_url
         ssingers = songs.result[0].singers
-        await m.edit("Downloading")
+        await m.edit("Sedang download tunggu...")
         song = await download_song(slink)
-        await m.edit("Uploading")
+        await m.edit("Mengunggah...")
         await message.reply_audio(audio=song, title=sname, performer=ssingers)
         os.remove(song)
         await m.delete()
@@ -276,7 +276,7 @@ async def deezsong(_, message):
     is_downloading = True
     text = message.text.split(None, 1)[1]
     query = text.replace(" ", "%20")
-    m = await message.reply_text("🔎 **Sedang Mencari Lagu**")
+    m = await message.reply_text("Sedang mencari lagu...Tunggu nii-san!")
     try:
         songs = await arq.deezer(query, 1)
         if not songs.ok:
@@ -285,9 +285,9 @@ async def deezsong(_, message):
         title = songs.result[0].title
         url = songs.result[0].url
         artist = songs.result[0].artist
-        await m.edit("Downloading")
+        await m.edit("Sedang mendownload lagu...")
         song = await download_song(url)
-        await m.edit("Uploading")
+        await m.edit("Mengunggah...")
         await message.reply_audio(audio=song, title=title, performer=artist)
         os.remove(song)
         await m.delete()
@@ -303,7 +303,7 @@ async def ytmusic(client, message: Message):
     global is_downloading
     if is_downloading:
         await message.reply_text(
-            "**Downloadan yang lain sedang berlangsung, coba lagi nanti**"
+            "**Download an yang lain sedang berlangsung, coba lagi nanti**"
         )
         return
     urlissed = get_text(message)
@@ -311,7 +311,7 @@ async def ytmusic(client, message: Message):
         message.chat.id, f"**Mendapatkan** `{urlissed}` **Dari Youtube. Tunggu Sebentar.**"
     )
     if not urlissed:
-        await pablo.edit("**Sintaks Perintah Tidak Valid** Silakan ketik `/help` Untuk Mengetahui Lebih Lanjut!")
+        await pablo.edit("**Sintaks Perintah Tidak Valid** Silakan ketik `/help` Untuk Mengetahui Lebih Lanjut :)")
         return
 
     search = SearchVideos(f"{urlissed}", offset=1, mode="dict", max_results=1)
@@ -345,7 +345,7 @@ async def ytmusic(client, message: Message):
 
             if duration > DURATION_LIMIT:
                 await pablo.edit(
-                    f"❌ **Video berdurasi lebih dari {DURATION_LIMIT} menit tidak diperbolehkan, video yang ingin kamu download {duration} menit**"
+                    f"Video berdurasi lebih dari {DURATION_LIMIT} menit tidak diperbolehkan, video yang ingin kamu download {duration} menit**"
                 )
                 is_downloading = False
                 return
