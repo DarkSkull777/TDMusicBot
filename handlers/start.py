@@ -32,14 +32,13 @@ async def _human_time_duration(seconds):
 @Client.on_message(command("start") & filters.private & ~filters.edited)
 async def start_(client: Client, message: Message):
     await message.reply_text(
-        f"""<b>┗┓ Hi {message.from_user.first_name} My Name is [{BOT_NAME}](https://t.me/{BOT_USERNAME}) ┏┛\n
+        f"""<b>hey {message.from_user.first_name} My Name is [{BOT_NAME}](https://t.me/{BOT_USERNAME}) ┏┛\n
 Saya Bot Music Group, Yang dapat Memutar Lagu di Voice Chat Group Dengan cara yang Mudah
 Saya Memiliki Banyak Fitur Praktis Seperti:
-┏━━━━━━━━━━━━━━
-┣• Memutar Musik.
-┣• Mendownload Lagu.
-┣• Mencari Lagu Yang ingin di Putar atau di Download.
-┗━━━━━━━━━━━━━━
+Memutar Musik.
+Mendownload Lagu.
+Mencari Lagu Yang ingin di Putar atau di Download.
+
 Ketik » /help « Untuk Melihat Daftar Perintah!
 </b>""",
         reply_markup=InlineKeyboardMarkup(
@@ -52,7 +51,7 @@ Ketik » /help « Untuk Melihat Daftar Perintah!
                          "🤖 Assistant", url=f"https://t.me/{ASSISTANT_NAME}"
                     ),
                     InlineKeyboardButton(
-                        "🛠 Repo", url="https://github.com/tofikdn/TDMusicBot"
+                        "🔥Owner", url="https://t.me/xskull7"
                     )
                 ]
             ]
@@ -61,21 +60,21 @@ Ketik » /help « Untuk Melihat Daftar Perintah!
     )
 
 
-@Client.on_message(command(["start", "start@tofikdnbot"]) & filters.group & ~filters.edited)
+@Client.on_message(command(["start", "start@dimastapimusic_bot"]) & filters.group & ~filters.edited)
 async def start(client: Client, message: Message):
     current_time = datetime.utcnow()
     uptime_sec = (current_time - START_TIME).total_seconds()
     uptime = await _human_time_duration(int(uptime_sec))
     await message.reply_text(
-        f"""I'm online!\n<b>Up since:</b> `{uptime}`""",
+        f"""Aku aktif!!\n<b>Aktif dari:</b> `{uptime}`""",
         reply_markup=InlineKeyboardMarkup(
             [
                 [
                     InlineKeyboardButton(
-                        "🛠 Repo", url="https://github.com/tofikdn/TDMusicBot"
+                        "🔥Creator", url="https://t.me/xskull7"
                     ),
                     InlineKeyboardButton(
-                        "💬 Group", url="https://t.me/tedesupport"
+                        "🌹Website", url="https://darkskull7.my.to"
                     )
                 ]
             ]
@@ -106,10 +105,10 @@ async def help(client: Client, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        "Group", url="https://t.me/tedesupport"
+                        "Website🌹", url="https://darkskull7.my.to"
                     ),
                     InlineKeyboardButton(
-                        "Tede", url="https://t.me/tdtapibot"
+                        "Dimas🔥", url="https://t.me/xskull7"
                     )
                 ]
             ]
@@ -120,10 +119,10 @@ async def help(client: Client, message: Message):
 @Client.on_message(command("ping") & ~filters.edited)
 async def ping_pong(client: Client, m: Message):
     start = time()
-    m_reply = await m.reply_text("Pinging...")
+    m_reply = await m.reply_text("Mengecek...")
     delta_ping = time() - start
     await m_reply.edit_text(
-        f"{emoji.PING_PONG} **PONG!!**\n"
+        f"{emoji.PING_PONG} **DORRR!!**\n"
         f"`{delta_ping * 1000:.3f} ms`"
     )
 
