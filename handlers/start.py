@@ -32,14 +32,13 @@ async def _human_time_duration(seconds):
 @Client.on_message(command("start") & filters.private & ~filters.edited)
 async def start_(client: Client, message: Message):
     await message.reply_text(
-        f"""<b>┗┓ Hi {message.from_user.first_name} My Name is [{BOT_NAME}](https://t.me/{BOT_USERNAME}) ┏┛\n
+        f"""<b> Hi {message.from_user.first_name} My Name is [{BOT_NAME}](https://t.me/{BOT_USERNAME}) \n
 Saya Bot Music Group, Yang dapat Memutar Lagu di Voice Chat Group Dengan cara yang Mudah
 Saya Memiliki Banyak Fitur Praktis Seperti:
-┏━━━━━━━━━━━━━━
-┣• Memutar Musik.
-┣• Mendownload Lagu.
-┣• Mencari Lagu Yang ingin di Putar atau di Download.
-┗━━━━━━━━━━━━━━
+Memutar Musik.
+Mendownload Lagu.
+Mencari Lagu Yang ingin di Putar atau di Download.
+
 Ketik » /help « Untuk Melihat Daftar Perintah!
 </b>""",
         reply_markup=InlineKeyboardMarkup(
@@ -52,7 +51,7 @@ Ketik » /help « Untuk Melihat Daftar Perintah!
                          "🤖 Assistant", url=f"https://t.me/{ASSISTANT_NAME}"
                     ),
                     InlineKeyboardButton(
-                        "🛠 Repo", url="https://github.com/tofikdn/TDMusicBot"
+                        "🌹 Channel", url="https://t.me/botdimasdoang"
                     )
                 ]
             ]
@@ -61,7 +60,7 @@ Ketik » /help « Untuk Melihat Daftar Perintah!
     )
 
 
-@Client.on_message(command(["start", "start@tofikdnbot"]) & filters.group & ~filters.edited)
+@Client.on_message(command(["start", "start@dimastapimusic_bot"]) & filters.group & ~filters.edited)
 async def start(client: Client, message: Message):
     current_time = datetime.utcnow()
     uptime_sec = (current_time - START_TIME).total_seconds()
@@ -72,10 +71,10 @@ async def start(client: Client, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        "🛠 Repo", url="https://github.com/tofikdn/TDMusicBot"
+                        "🔥 Owner", url="https://t.me/xskull7"
                     ),
                     InlineKeyboardButton(
-                        "💬 Group", url="https://t.me/tedesupport"
+                        "🌹 Channel", url="https://t.me/botdimasdoang"
                     )
                 ]
             ]
@@ -106,10 +105,10 @@ async def help(client: Client, message: Message):
             [
                 [
                     InlineKeyboardButton(
-                        "Group", url="https://t.me/tedesupport"
+                        "Support", url="https://t.me/botdimasdoang"
                     ),
                     InlineKeyboardButton(
-                        "Tede", url="https://t.me/tdtapibot"
+                        "Dimas", url="https://t.me/xskull7"
                     )
                 ]
             ]
